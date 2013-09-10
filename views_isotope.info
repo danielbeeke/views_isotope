@@ -1,0 +1,7 @@
+name = Views Isoptope
+description = "Provides Isoptope for views."
+package = Views
+core = 7.x
+
+dependencies[] = libraries
+dependencies[] = views

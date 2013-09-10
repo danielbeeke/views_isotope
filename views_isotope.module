@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * Implements hook_views_api().
+ */
+function views_isotope_views_api() {
+  return array(
+    'api' => 3,
+    'template path' => drupal_get_path('module', 'views_isotope'),
+  );
+}
+
+
+/**
+ * Implements hook_views_ajax_data_alter().
+ *
+ * @param array $commands
+ *   An array of ajax commands
+ * @param string $view
+ *   The view which is requested.
+ */
+function views_isotope_views_ajax_data_alter(&$commands, $view) {
+  if (get_class($view->style_plugin) == 'views_plugin_style_views_isotope') {
+    foreach ($commands as $index => $command) {
+      if ($command['command'] == 'insert') {
+        $commands[$index]['command'] = 'isotope';
+      }
+    }
+  }
+}
